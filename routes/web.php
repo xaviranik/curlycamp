@@ -15,4 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('projects', 'ProjectsController');
+Auth::routes();
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('projects', 'ProjectsController');
+
+    Route::get('/home', 'HomeController@index')->name('home');
+});

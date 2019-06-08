@@ -8,13 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Projects</h1>
-    <ul>
-        @forelse($projects as $project)
-            <li>{{ $project->title }}</li>
-        @empty
-            <h4>Nothing here!</h4>
-        @endforelse
-    </ul>
+    <h1>{{ $project->title }}</h1>
+    <p>{{ $project->description }}</p>
 </body>
 </html>
