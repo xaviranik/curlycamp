@@ -7,13 +7,13 @@
         </div>
     </header>
 
-    <div class="block lg:flex lg:flex-wrap -mx-3">
+    <main class="block lg:flex lg:flex-wrap -mx-3">
         @forelse($projects as $project)
             <div class="lg:w-1/3 px-3 pb-6">
-
+                @include('projects.card')
             </div>
         @empty
             <h4>No Projects yet!</h4>
         @endforelse
-    </div>
+    </main>
 @endsection
