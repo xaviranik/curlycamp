@@ -12,7 +12,7 @@
                 <label for="description">Description</label>
                 <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
             </div>
-            <button class="btn btn-primary" type="submit">Create Project</button>
+            <button class="button" type="submit">Create Project</button>
         </form>
     </div>
 @endsection
