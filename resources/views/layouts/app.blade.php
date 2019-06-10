@@ -25,7 +25,7 @@
             <div class="container mx-auto">
                 <div class="flex justify-between items-center py-2">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        <img src="{{ asset('images/logo.png') }}" alt="Logo" width="180px">
                     </a>
 
                     <div>
@@ -66,7 +66,7 @@
             </div>
         </nav>
 
-        <main class="container mx-auto py-4">
+        <main class="container mx-auto py-4 section">
             @yield('content')
         </main>
     </div>
