@@ -71,6 +71,20 @@ class ManageProjectsTest extends TestCase
         $this->assertDatabaseHas('projects', $attributes);
     }
 
+    public function a_user_can_update_a_projects_general_notes()
+    {
+        $project = ProjectFactory::create();
+
+        $attributes =  [
+            'notes' => 'Changed Notes'
+        ];
+
+        $this->actingAs($project->owner)
+            ->patch($project->path(), $attributes);
+
+        $this->assertDatabaseHas('projects', $attributes);
+    }
+
     /** @test */
     public function a_user_can_view_a_project()
     {
