@@ -24,7 +24,7 @@
         <nav class="bg-white">
             <div class="container mx-auto">
                 <div class="flex justify-between items-center py-2">
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ route('projects.index') }}">
                         <img src="{{ asset('images/logo.png') }}" alt="Logo" width="180px">
                     </a>
 

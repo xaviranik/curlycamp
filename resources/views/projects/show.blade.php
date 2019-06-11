@@ -3,7 +3,8 @@
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between items-end w-full">
             <p class="text-grey font-normal text-sm">
-                <a class="text-green font-normal text-sm no-underline" href="{{ route('projects.index') }}">My Projects</a> / {{ $project->title }}
+                <a class="text-green font-normal text-sm no-underline" href="{{ route('projects.index') }}">My
+                    Projects</a> / {{ $project->title }}
             </p>
             <a class="button" href="{{ route('projects.create') }}">New Project</a>
         </div>
@@ -21,8 +22,10 @@
                                 @method('PATCH')
                                 @csrf
                                 <div class="flex justify-between items-center">
-                                    <input class="w-full {{ $task->completed ? 'text-grey' : '' }}" type="text" name="body" value="{{ $task->body }}">
-                                    <input type="checkbox" name="completed" onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
+                                    <input class="w-full {{ $task->completed ? 'text-grey' : '' }}" type="text"
+                                           name="body" value="{{ $task->body }}">
+                                    <input type="checkbox" name="completed"
+                                           onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
                                 </div>
                             </form>
                         </div>
@@ -40,7 +43,13 @@
                 <div>
                     <h2 class="text-grey font-normal text-lg mb-3">General Notes</h2>
                     {{--General Notes--}}
-                    <textarea class="card w-full" style="min-height: 200px">Lorem ipsum</textarea>
+                    <form method="POST" action="{{ $project->path() }}">
+                        @method('PATCH')
+                        @csrf
+                        <textarea name="notes" class="card w-full mb-3" style="min-height: 200px"
+                                  placeholder="Anything you want to make note of?">{{ $project->notes }}</textarea>
+                        <button class="button" type="submit">Save</button>
+                    </form>
                 </div>
 
             </div>
