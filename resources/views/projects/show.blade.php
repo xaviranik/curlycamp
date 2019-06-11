@@ -6,7 +6,7 @@
                 <a class="text-green font-normal text-sm no-underline" href="{{ route('projects.index') }}">My
                     Projects</a> / {{ $project->title }}
             </p>
-            <a class="button" href="{{ route('projects.create') }}">New Project</a>
+            <a class="button" href="{{ $project->path() . '/edit' }}">Edit Project</a>
         </div>
     </header>
 
