@@ -52,23 +52,22 @@ class ProjectsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Project  $project
+     * @param \App\Project $project
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Project $project)
     {
-        if(auth()->user()->isNot($project->owner))
-        {
-            abort(403);
-        }
+        $this->authorize('update', $project);
+
         return view('projects.show', compact('project'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Project  $project
-     * @return \Illuminate\Http\Response
+     * @param \App\Project $project
+     * @return void
      */
     public function edit(Project $project)
     {
@@ -78,16 +77,14 @@ class ProjectsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Project  $project
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Project $project
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, Project $project)
     {
-        if(auth()->user()->isNot($project->owner))
-        {
-            abort(403);
-        }
+        $this->authorize('update', $project);
 
         $project->update([
             'notes' => $request['notes']

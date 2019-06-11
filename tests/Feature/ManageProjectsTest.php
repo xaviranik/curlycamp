@@ -78,7 +78,7 @@ class ManageProjectsTest extends TestCase
         $this->signIn();
 
         $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
-        $this->get('/projects/' . $project->id)
+        $this->get($project->path())
             ->assertSee($project->title);
     }
 
@@ -88,7 +88,17 @@ class ManageProjectsTest extends TestCase
         $this->signIn();
 
         $project = factory('App\Project')->create();
-        $this->get('/projects/' . $project->id)
+        $this->get($project->path())
+            ->assertStatus(403);
+    }
+
+    /** @test */
+    public function an_authenticated_user_can_not_update_projects_of_others()
+    {
+        $this->signIn();
+
+        $project = factory('App\Project')->create();
+        $this->patch($project->path(), [])
             ->assertStatus(403);
     }
 
