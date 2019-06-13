@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Observers\ProjectObserver;
+use App\Observers\TaskObserver;
 use App\Project;
+use App\Task;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -29,5 +31,6 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Project::observe(ProjectObserver::class);
+        Task::observe(TaskObserver::class);
     }
 }
