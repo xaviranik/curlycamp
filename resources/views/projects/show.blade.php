@@ -18,7 +18,7 @@
                     {{--Tasks--}}
                     @forelse ($project->tasks as $task)
                         <div class="card mb-3">
-                            <form method="POST" action="{{ $task->path() }}">
+                            <form method="POST" action="{{ $task->path() }}" autocomplete="off">
                                 @method('PATCH')
                                 @csrf
                                 <div class="flex justify-between items-center">
