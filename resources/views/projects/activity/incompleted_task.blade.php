@@ -1,1 +1,1 @@
-You uncompleted <span class="font-bold">{{ $activity->subject->body }}</span>
+{{ $activity->user->name }} uncompleted <span class="font-bold">{{ $activity->subject->body }}</span>
