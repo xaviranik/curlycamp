@@ -3,10 +3,21 @@
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between items-end w-full">
             <p class="text-grey font-normal text-sm">
-                <a class="text-green font-normal text-sm no-underline" href="{{ route('projects.index') }}">My
-                    Projects</a> / {{ $project->title }}
+                <a class="text-green font-normal text-sm no-underline" href="{{ route('projects.index') }}">My Projects</a> / {{ $project->title }}
             </p>
-            <a class="button" href="{{ $project->path() . '/edit' }}">Edit Project</a>
+            <div class="flex items-center">
+                @forelse($project->members as $member)
+                    <img src="{{ gravater_url($member->email) }}"
+                         alt="{{ $member->name }}"
+                         class="rounded-full w-8 mr-2">
+                @empty
+                    No members
+                @endforelse
+                    <img src="{{ gravater_url($project->owner->email) }}"
+                         alt="{{ $project->owner->name }}"
+                         class="rounded-full w-8 mr-2">
+                    <a class="button ml-4" href="{{ $project->path() . '/edit' }}">Edit Project</a>
+            </div>
         </div>
     </header>
 
