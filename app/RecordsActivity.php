@@ -50,7 +50,7 @@ trait RecordsActivity
         if (isset(static::$recordableEvents)) {
             $recordableEvents = static::$recordableEvents;
         } else {
-            $recordableEvents = ['created', 'updated', 'deleted'];
+            $recordableEvents = ['created', 'updated'];
         }
         return $recordableEvents;
     }

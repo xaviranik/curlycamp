@@ -93,15 +93,12 @@ class ProjectsController extends Controller
         return redirect($project->path());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Project $project
-     * @return Response
-     */
+
     public function destroy(Project $project)
     {
-        //
+        $this->authorize('update', $project);
+        $project->delete();
+        return redirect('/projects');
     }
 
     /**
