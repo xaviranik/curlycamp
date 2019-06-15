@@ -34,4 +34,14 @@ class Project extends Model
     {
         return $this->hasMany(Activity::class)->latest();
     }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'project_members');
+    }
+
+    public function invite(User $user)
+    {
+        return $this->members()->attach($user);
+    }
 }

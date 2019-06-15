@@ -20,7 +20,7 @@ class InvitationsTest extends TestCase
 
         $this->signIn($newUser);
 
-        $this->post(action('ProjectsController@store', $project), $task = ['body' => 'fooTask']);
+        $this->post(action('ProjectTasksController@store', $project), $task = ['body' => 'fooTask']);
         $this->assertDatabaseHas('tasks', $task);
     }
 }
