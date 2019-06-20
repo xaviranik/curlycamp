@@ -21,7 +21,7 @@
         </div>
     </header>
 
-    <main>
+    <main class="mb-6">
         <div class="lg:flex -mx-3">
             <div class="lg:w-3/4 px-3 mb-6">
                 <div class="mb-8">
@@ -61,13 +61,18 @@
                                   placeholder="Anything you want to make note of?">{{ $project->notes }}</textarea>
                         <button class="button" type="submit">Save</button>
                     </form>
-                </div>
 
+                    @include('errors')
+                </div>
             </div>
 
             <div class="lg:w-1/4 px-3">
                 @include('projects.card')
                 @include('projects.activity.card')
+
+                @can('manage', $project)
+                    @include('projects.invite')
+                @endcan
             </div>
         </div>
     </main>

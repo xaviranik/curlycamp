@@ -17,8 +17,16 @@ class InvitationsTest extends TestCase
         $project = ProjectFactory::create();
         $user = factory(User::class)->create();
 
-        $this->actingAs($user)->post($project->path() . '/invitation')
-            ->assertStatus(403);
+        $assertInsertionForbidden = function () use ($project, $user){
+            $this->actingAs($user)->post($project->path() . '/invitation')
+                ->assertStatus(403);
+        };
+
+        $assertInsertionForbidden();
+
+        $project->invite($user);
+
+        $assertInsertionForbidden();
     }
     
     /** @test */
@@ -41,7 +49,7 @@ class InvitationsTest extends TestCase
 
         $this->actingAs($project->owner)->post($project->path() . '/invitation', [
             'email' => 'notauser@example.com'
-        ])->assertSessionHasErrors(['email' => 'The user you are inviting must have a CurlyCamp account']);
+        ])->assertSessionHasErrors(['email' => 'The user you are inviting must have a CurlyCamp account'], null, 'invitations');
     }
 
     /** @test */
