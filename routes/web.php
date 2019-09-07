@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -25,5 +25,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/projects/{project}/invitation', 'ProjectInvitationsController@store');
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'ProjectsController@index')->name('home');
 });
